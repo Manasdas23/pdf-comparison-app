@@ -1,0 +1,36 @@
+<div class="pdf-comparison-container">
+  <div class="pdf-viewer-wrapper">
+    <h2>PDF 1</h2>
+    <input
+      type="file"
+      accept="application/pdf"
+      (change)="uploadPdf($event, 1)"
+    />
+    <div #pdfViewer1 class="pdf-viewer">
+      <ngx-extended-pdf-viewer
+        *ngIf="pdfSrc1"
+        [src]="pdfSrc1"
+        [showToolbar]="true"
+        [height]="'80vh'"
+      >
+      </ngx-extended-pdf-viewer>
+    </div>
+  </div>
+  <div class="pdf-viewer-wrapper">
+    <h2>PDF 2</h2>
+    <input
+      type="file"
+      accept="application/pdf"
+      (change)="uploadPdf($event, 2)"
+    />
+    <div #pdfViewer2 class="pdf-viewer">
+     <ngx-extended-pdf-viewer
+        *ngIf="pdfSrc2"
+        [src]="pdfSrc2"
+        [showToolbar]="true"
+        [height]="'80vh'"
+      >
+      </ngx-extended-pdf-viewer>
+    </div>
+  </div>
+</div>

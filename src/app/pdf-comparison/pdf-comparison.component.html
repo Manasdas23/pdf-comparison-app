@@ -1,0 +1,51 @@
+<div class="controls">
+  <div class="zoom-controls">
+    <button (click)="zoomIn()">Zoom In</button>
+    <button (click)="zoomOut()">Zoom Out</button>
+    <span>Zoom: {{zoom * 100}}%</span>
+    <button (click)="toggleSync()" [class.active]="syncPages">
+      {{ syncPages ? 'Unsync Pages' : 'Sync Pages' }}
+    </button>
+  </div>
+</div>
+
+<div class="comparison-container">
+  <div class="pdf-container">
+    <h3>PDF 1</h3>
+    <input type="file" (change)="onFileSelected($event, 1)" accept=".pdf">
+    <div class="pdf-viewer">
+      <pdf-viewer 
+      
+        [src]="pdfSrc1" 
+        [page]="page1" 
+        [zoom]="zoom"
+        (after-load-complete)="afterLoadComplete($event, 1)"
+        style="width: 100%; height: 100%;"
+      ></pdf-viewer>
+    </div>
+    <div class="page-controls" *ngIf="pdfSrc1">
+      <button (click)="onPageChange(page1 - 1, 1)" [disabled]="page1 === 1">Previous</button>
+      <span>Page {{page1}} of {{totalPages1}}</span>
+      <button (click)="onPageChange(page1 + 1, 1)" [disabled]="page1 === totalPages1">Next</button>
+    </div>
+  </div>
+
+  <div class="pdf-container">
+    <h3>PDF 2</h3>
+    <input type="file" (change)="onFileSelected($event, 2)" accept=".pdf">
+    <div class="pdf-viewer">
+      <pdf-viewer 
+        [src]="pdfSrc2" 
+        [page]="page2" 
+        [zoom]="zoom"
+        (after-load-complete)="afterLoadComplete($event, 2)"
+        style="width: 100%; height: 100%;"
+      ></pdf-viewer>
+    </div>
+    <div class="page-controls" *ngIf="pdfSrc2">
+      <button (click)="onPageChange(page2 - 1, 2)" [disabled]="page2 === 1">Previous</button>
+      <span>Page {{page2}} of {{totalPages2}}</span>
+      <button (click)="onPageChange(page2 + 1, 2)" [disabled]="page2 === totalPages2">Next</button>
+    </div>
+  </div>
+</div>
